@@ -1,0 +1,71 @@
+.content {
+    width: 500px;
+    height: auto;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: 2fr 3fr;
+}
+
+.user-input-field {
+    width: auto;
+    height: 100%;
+    background: red;
+    grid-area: 1/2/2/3;
+    justify-self: center;
+    align-items: center;
+    display: flex;
+}
+
+.user-input-field input{
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-input-field button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.library-display {
+    width: auto;
+    height: auto;
+    border: 1px solid black;
+    grid-area: 2/2/3/3;
+    background-image: url("library.jpg");
+    background-size: cover;
+    /*opacity: 50%;*/
+    display: grid;
+    grid-template-rows: 4fr 4fr 1fr;
+}
+
+.library-display p {
+    margin: auto;
+    margin-bottom: 0;
+    background-color: gray;
+    font-size: .75em;
+}
+
+.cover-page {
+    grid-row: 1;
+    height: 100%;
+    width: 50%;
+    justify-self: center;
+    background-color: yellowgreen;
+    border: 1px solid black;
+    
+    /* This is a place holder, in the live version this will update */
+    background-image: url("the hobbit.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.book-info {
+    grid-row: 2;
+    height: 100%;
+    width: 75%;
+    justify-self: center;
+    background-color: orange;
+    border: 1px solid black;
+}
