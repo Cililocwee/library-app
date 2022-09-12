@@ -12,6 +12,30 @@
 
     
     <div class="content"> 
+
+        <button class="open-button" onclick="openForm()">Open Form</button>
+
+        <div class="form-popup" id="myForm">
+            <div class="form-container">
+                <h1>New Book</h1>
+
+                <label for="form-title"><b>Title</b></label>
+                <input type="text" placeholder="Enter title here..." name="form-title" id="form-title">
+
+                <label for="author"><b>Author</b></label>
+                <input type="text" placeholder="Enter author here..." name="author" id="author">
+
+                <label for="pages"><b>Pages</b></label>
+                <input type="text" placeholder="Enter total page count..." name="pages" id="pages">
+
+                <label for="readStatus"><b>Status</b></label>
+                <input type="text" placeholder="Check whether you've read it..." name="readStatus" id="readStatus">
+                
+                <button class="btn addtolibrary" >Add</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </div>
+        </div>
+<!--
         <div class="user-input-field">
 
             <div id="book-submission-form">
@@ -24,7 +48,7 @@
                 <button class="addtolibrary">Add</button>
             </div>
 
-        </div>
+        </div> -->
 
         <div class="library-display">
             <div class="book-info">
@@ -34,16 +58,7 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Pages</th>
-                    </tr>
-                    <tr>
-                        <td>The Hobbit</td>
-                        <td>J.R.R. Tolkien</td>
-                        <td>490</td>
-                    </tr>
-                    <tr>
-                        <td>The Wheel of Time</td>
-                        <td>Robert Jordan</td>
-                        <td>678</td>
+                        <th>Status</th>
                     </tr>
                 </table>
 
