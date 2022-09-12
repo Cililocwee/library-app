@@ -6,39 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
+    
 </head>
 <body>
+
+    
     <div class="content"> 
         <div class="user-input-field">
 
-            <form id="book-submission">
-                Title: <input type="text" name="title" id="title"><br>
-                Author: <input type="text" name="author" id="author"><br>
-                Pages: <input type="text" name="pages" id="pages"><br>
-                <button type="submit">Submit</button>
-            </form>
+            <div id="book-submission-form">
+                <label for="form-title">Title:</label>  
+                <input type="text" name="form-title" id="form-title" placeholder="Enter title here..."><br>
+                <label for="author">Author:</label>  
+                <input type="text" name="author" id="author" placeholder="Enter author info..."><br>
+                <label for="pages">Pages</label>
+                <input type="text" name="pages" id="pages" placeholder="Enter total pages..."><br>
+                <button class="addtolibrary">Add</button>
+            </div>
 
         </div>
 
         <div class="library-display">
-            <div class="cover-page"> 
-            </div>
             <div class="book-info">
 
-                <!-- This is a place holder, in the live version this will update -->
-                <ul class="example-booklist" style="list-style: none;">
-                    <li>The Hobbit</li>
-                    <li>The Lord of the Rings: The Fellowship of the Ring</li>
-                    <li>The Lord of the Rings: The Two Towers</li>
-                    <li>The Lord of the Rings: The Return of the King</li>
-                    <li>The Silmarillion</li>
-                </ul>
+                <table class="book-info-table">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                    </tr>
+                    <tr>
+                        <td>The Hobbit</td>
+                        <td>J.R.R. Tolkien</td>
+                        <td>490</td>
+                    </tr>
+                    <tr>
+                        <td>The Wheel of Time</td>
+                        <td>Robert Jordan</td>
+                        <td>678</td>
+                    </tr>
+                </table>
+
             </div>
             <p>Photo by <a href="https://unsplash.com/@gabons?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Gabriel Sollmann</a> on <a href="https://unsplash.com/s/photos/library?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
             </p>
         </div>
     </div>   
+
+    <script src="scripts.js"></script>
 </body>
 </html>
 
