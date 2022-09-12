@@ -10,11 +10,13 @@ const Library = {
   }
 
 // populating the inventory with some dummy books 
-addBookToLibrary('The Bible', 'A lot', 'JeSuS', 'read');
+addBookToLibrary('The Adventures of Huckleberry Finn', 366, 'Twain, Mark', 'read');
 addBookToTable();
-addBookToLibrary('The Hobbit', 345, 'JRR Tolkien','unread');
+addBookToLibrary('The Hobbit', 304, 'Tolkien, JRR','unread');
 addBookToTable();
-addBookToLibrary('The Wheel of Time', 766,'Robert Jordan', 'unread');
+addBookToLibrary('The Wheel of Time', 782,'Jordan, Robert', 'unread');
+addBookToTable();
+addBookToLibrary('Interview with the Vampire', 371, 'Rice, Anne', 'read');
 addBookToTable();
   
 // book object constructor, libraries need many books, right?
@@ -57,6 +59,11 @@ function addBookToTable(){
 
 // waits to hear a click on the add button
 button.addEventListener('click', (event) => {
+  if (title.value === ''){
+    console.log("Error: Must have a title");
+    closeForm();
+    return;
+  }
   addBookToLibrary(title.value, pages.value, author.value, readStatus.value);
   addBookToTable();
   // clear the fields
@@ -72,6 +79,31 @@ button.addEventListener('click', (event) => {
   closeForm();
 })
 
+// closes the open pop-up form
+const popupForm = document.getElementById("myForm");
+const closeButton = document.querySelector('#close-button');
+
+closeButton.addEventListener('click', (event) => {
+  closeForm();
+});
+
+/*if (popupForm.style.display = "block"){
+  document.addEventListener('click', (event) => {
+    var isClickInsideElement = popupForm.contains(event.target);
+    if (!isClickInsideElement) {
+      closeForm();
+    } 
+  })
+}*/
+
+function openForm() {
+  popupForm.style.display = "block";
+}
+
+function closeForm() {
+  popupForm.style.display = "none";
+}
+
 // WIP to remove a book from the table and/or inventory
 function removeBook(title){
   for (let i = 0; i < Library.inventory; i++){
@@ -81,14 +113,72 @@ function removeBook(title){
   }
 }
 
-//removeBook('The Hobbit');
+//removeBook('The Hobbit'); **DEBUG
 console.log(Library.inventory)
 
-// for manipulating the input form
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+// sorting by headers (only title and author)
+const titleAnchor = document.querySelector('#title-anchor');
+titleAnchor.addEventListener('click', (event) => {
+  sortTable(0);
+})
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
+const authorAnchor = document.querySelector('#author-anchor');
+authorAnchor.addEventListener('click', (event) =>{
+  sortTable(1);
+})
+
+// continuous sorting via W3
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("book-info-table");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
 }

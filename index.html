@@ -20,10 +20,10 @@
                 <h1>New Book</h1>
 
                 <label for="form-title"><b>Title</b></label>
-                <input type="text" placeholder="Enter title here..." name="form-title" id="form-title">
+                <input type="text" placeholder="Enter title here..." name="form-title" id="form-title" required>
 
                 <label for="author"><b>Author</b></label>
-                <input type="text" placeholder="Enter author here..." name="author" id="author">
+                <input type="text" placeholder="Last name, First name..." name="author" id="author">
 
                 <label for="pages"><b>Pages</b></label>
                 <input type="text" placeholder="Enter total page count..." name="pages" id="pages">
@@ -31,8 +31,8 @@
                 <label for="readStatus"><b>Status</b></label>
                 <input type="text" placeholder="Check whether you've read it..." name="readStatus" id="readStatus">
                 
-                <button class="btn addtolibrary" >Add</button>
-                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                <button class="btn addtolibrary">Add</button>
+                <button type="button" class="btn cancel" id="close-button">Close</button>
             </div>
         </div>
 <!--
@@ -53,13 +53,15 @@
         <div class="library-display">
             <div class="book-info">
 
-                <table class="book-info-table">
+                <table class="book-info-table" id="book-info-table">
+                    <tobdy id="table-body">
                     <tr>
-                        <th>Title</th>
-                        <th>Author</th>
+                        <th><a id="title-anchor">Title</a></th>
+                        <th><a id="author-anchor">Author</a></th>
                         <th>Pages</th>
                         <th>Status</th>
                     </tr>
+                    </tobdy>
                 </table>
 
             </div>
