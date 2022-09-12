@@ -1,35 +1,35 @@
 // Library object literal, no need for a constructor
 const Library = {
-    inventory: [],
-    takeStock: function(){
-      for (let i = 0; i < this.inventory.length; i++) {
-        console.log(this.inventory[i].title);
-      }
+  inventory: [],
+  takeStock: function () {
+    for (let i = 0; i < this.inventory.length; i++) {
+      console.log(this.inventory[i].title);
     }
-    
   }
+
+}
 
 // populating the inventory with some dummy books 
 addBookToLibrary('The Adventures of Huckleberry Finn', 366, 'Twain, Mark', 'read');
 addBookToTable();
-addBookToLibrary('The Hobbit', 304, 'Tolkien, JRR','unread');
+addBookToLibrary('The Hobbit', 304, 'Tolkien, JRR', 'unread');
 addBookToTable();
-addBookToLibrary('The Wheel of Time', 782,'Jordan, Robert', 'unread');
+addBookToLibrary('The Wheel of Time', 782, 'Jordan, Robert', 'unread');
 addBookToTable();
 addBookToLibrary('Interview with the Vampire', 371, 'Rice, Anne', 'read');
 addBookToTable();
-  
+
 // book object constructor, libraries need many books, right?
 function Book(title, pages, author, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.readStatus = readStatus
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.readStatus = readStatus
 };
- 
+
 // books gotta be in the library, right?
 function addBookToLibrary(title, pages, author, status) {
-  let book = new Book(title,pages,author, status);
+  let book = new Book(title, pages, author, status);
   Library.inventory.push(book);
 }
 
@@ -41,7 +41,7 @@ const readStatus = document.querySelector('#readStatus');
 const button = document.querySelector('.addtolibrary');
 
 // takes a book in the inventory and puts it on the table
-function addBookToTable(){
+function addBookToTable() {
   const table = document.querySelector('.book-info-table');
   const row = table.insertRow(-1);
   const cell1 = row.insertCell(0);
@@ -49,7 +49,7 @@ function addBookToTable(){
   const cell3 = row.insertCell(2);
   const cell4 = row.insertCell(3);
 
-  for (let i = 0; i < Library.inventory.length; i++){
+  for (let i = 0; i < Library.inventory.length; i++) {
     cell1.innerHTML = Library.inventory[i].title;
     cell2.innerHTML = Library.inventory[i].author;
     cell3.innerHTML = Library.inventory[i].pages;
@@ -57,9 +57,9 @@ function addBookToTable(){
   }
 };
 
-// waits to hear a click on the add button
+// waits to hear a click on the ADD button
 button.addEventListener('click', (event) => {
-  if (title.value === ''){
+  if (title.value === '') {
     console.log("Error: Must have a title");
     closeForm();
     return;
@@ -67,17 +67,37 @@ button.addEventListener('click', (event) => {
   addBookToLibrary(title.value, pages.value, author.value, readStatus.value);
   addBookToTable();
   // clear the fields
-  title.value = ''; 
+  title.value = '';
   author.value = '';
   pages.value = '';
   readStatus.value = '';
 
   // tracking the Library inventory while debugging
-  for(let i = 0; i < Library.inventory.length; i++) {
+  for (let i = 0; i < Library.inventory.length; i++) {
     console.log(Library.inventory[i]);
   }
   closeForm();
 })
+
+// form ADD on 'enter'
+const input = document.querySelectorAll('input');
+
+input.forEach(item => {
+  item.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      document.querySelector('#add-button').click();
+    }
+  })
+  // Escape is never caught on keypress, only keyup or keydown
+  // Only works on SECOND press, frustrating
+  item.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      document.querySelector('#close-button').click();
+    }
+  })
+});
+
+
 
 // closes the open pop-up form
 const popupForm = document.getElementById("myForm");
@@ -86,15 +106,6 @@ const closeButton = document.querySelector('#close-button');
 closeButton.addEventListener('click', (event) => {
   closeForm();
 });
-
-/*if (popupForm.style.display = "block"){
-  document.addEventListener('click', (event) => {
-    var isClickInsideElement = popupForm.contains(event.target);
-    if (!isClickInsideElement) {
-      closeForm();
-    } 
-  })
-}*/
 
 function openForm() {
   popupForm.style.display = "block";
@@ -105,9 +116,9 @@ function closeForm() {
 }
 
 // WIP to remove a book from the table and/or inventory
-function removeBook(title){
-  for (let i = 0; i < Library.inventory; i++){
-    if (Library.inventory[i].title === title){
+function removeBook(title) {
+  for (let i = 0; i < Library.inventory; i++) {
+    if (Library.inventory[i].title === title) {
       Library.inventory.splice(i, 1);
     }
   }
@@ -123,7 +134,7 @@ titleAnchor.addEventListener('click', (event) => {
 })
 
 const authorAnchor = document.querySelector('#author-anchor');
-authorAnchor.addEventListener('click', (event) =>{
+authorAnchor.addEventListener('click', (event) => {
   sortTable(1);
 })
 
@@ -171,7 +182,7 @@ function sortTable(n) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       // Each time a switch is done, increase this count by 1:
-      switchcount ++;
+      switchcount++;
     } else {
       /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
