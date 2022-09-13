@@ -1,3 +1,5 @@
+// ATTENTION: See line 68
+
 // Library object literal, no need for a constructor
 const Library = {
   inventory: [],
@@ -5,11 +7,23 @@ const Library = {
     for (let i = 0; i < this.inventory.length; i++) {
       console.log(this.inventory[i].title);
     }
-  }
+    },
+  removeBook: function(title) {
+    for (let i = 0; i < Library.inventory.length; i++) {
+      if (Library.inventory[i].title === title){
+        console.log(`Removing ${title}...`);
+        Library.inventory.splice(i,1);
+        console.log(`${title} removed from Library.inventory`)
+      }
+  
+      }
+    }
 
 }
 
 // populating the inventory with some dummy books 
+// input on pages is out of intuitive order due to development of system
+// needs to be optomized later (Title, Author, Pages, Status)
 addBookToLibrary('The Adventures of Huckleberry Finn', 366, 'Twain, Mark', 'read');
 addBookToTable();
 addBookToLibrary('The Hobbit', 304, 'Tolkien, JRR', 'unread');
@@ -48,12 +62,24 @@ function addBookToTable() {
   const cell2 = row.insertCell(1);
   const cell3 = row.insertCell(2);
   const cell4 = row.insertCell(3);
+  const cell5 = row.insertCell(4);
 
+
+  // REWORK THE HTML ON CELL4 ITS LONG AND I DON'T LIKE IT
+  // MAKE REMOVE BUTTON REMOVE ROW
+  // ^^^^^
+  // ^^^^
+  // ^^^
   for (let i = 0; i < Library.inventory.length; i++) {
     cell1.innerHTML = Library.inventory[i].title;
+    cell1.classList.add('book-title-cell');
     cell2.innerHTML = Library.inventory[i].author;
     cell3.innerHTML = Library.inventory[i].pages;
-    cell4.innerHTML = Library.inventory[i].readStatus;
+    //cell4.innerHTML = Library.inventory[i].readStatus;
+    cell4.innerHTML = `<select class="read-status-select"><option value="read">read</option><option value="in-progress">in progress</option><option value="unread">unread</option>`;
+    cell4.classList.add('book-read-status-cell');
+    cell5.innerHTML = '<button class="removal-button">Remove</button>';
+    
   }
 };
 
@@ -76,10 +102,11 @@ button.addEventListener('click', (event) => {
   for (let i = 0; i < Library.inventory.length; i++) {
     console.log(Library.inventory[i]);
   }
+
   closeForm();
 })
 
-// form ADD on 'enter'
+// Adds ENTER functionality in form
 const input = document.querySelectorAll('input');
 
 input.forEach(item => {
@@ -97,8 +124,6 @@ input.forEach(item => {
   })
 });
 
-
-
 // closes the open pop-up form
 const popupForm = document.getElementById("myForm");
 const closeButton = document.querySelector('#close-button');
@@ -107,38 +132,29 @@ closeButton.addEventListener('click', (event) => {
   closeForm();
 });
 
+// opening and closing the form using display
 function openForm() {
   popupForm.style.display = "block";
 }
 
 function closeForm() {
   popupForm.style.display = "none";
+  //makeSelectable(); //toggles selectable when run
 }
 
-// WIP to remove a book from the table and/or inventory
-function removeBook(title) {
-  for (let i = 0; i < Library.inventory; i++) {
-    if (Library.inventory[i].title === title) {
-      Library.inventory.splice(i, 1);
-    }
-  }
-}
-
-//removeBook('The Hobbit'); **DEBUG
-console.log(Library.inventory)
-
-// sorting by headers (only title and author)
+// sort by title
 const titleAnchor = document.querySelector('#title-anchor');
 titleAnchor.addEventListener('click', (event) => {
   sortTable(0);
 })
 
+// sort by author
 const authorAnchor = document.querySelector('#author-anchor');
 authorAnchor.addEventListener('click', (event) => {
   sortTable(1);
 })
 
-// continuous sorting via W3
+// main sort function (via W3)
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("book-info-table");
@@ -193,3 +209,26 @@ function sortTable(n) {
     }
   }
 }
+
+/* Deprecated button for deletion, as I'm exploring individual delete buttons
+this is obsolete. It provided a lot of insights into selection and deletion though
+so I will leave it until the final build to make reference to it */
+const deleteButton = document.querySelector('.delete-rows');
+deleteButton.addEventListener('click', (event) => {
+  console.log(`Starting removal of selected items...`)
+  let deleteBuffer = document.querySelectorAll('.selected');
+  deleteBuffer.forEach(item => {
+    // grab the title from row
+    let bufferTitle = item.cells[0].textContent;
+    
+    // log title for debugging
+    console.log(bufferTitle);
+    
+    // remove book from inventory
+    Library.removeBook(bufferTitle);
+
+    //remove book from the DOM
+    item.remove();
+  })
+  console.log('Completed removal of selected items...');
+})
