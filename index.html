@@ -29,7 +29,17 @@
                 <input type="text" placeholder="Enter total page count..." name="pages" id="pages">
 
                 <label for="readStatus"><b>Status</b></label>
-                <input type="text" placeholder="Check whether you've read it..." name="readStatus" id="readStatus">
+                <form name="readStatus" id="readStatus">
+                    <label class="radio-inline">
+                      <input type="radio" name="optradio" value="unread">unread
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="optradio" value="in progress">in progress
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="optradio" value="read">read
+                    </label>
+                  </form>
 
                 <button class="btn addtolibrary" id="add-button">Add</button>
                 <button type="button" class="btn cancel" id="close-button">Close</button>
@@ -37,7 +47,6 @@
         </div>
 
         <div class="library-display">
-            <button class="delete-rows">Delete Selected</button>
             <div class="book-info">
 
                 <table class="book-info-table" id="book-info-table">

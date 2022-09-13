@@ -72,15 +72,9 @@ body {
   margin-top: 20px;
 }
 
-/* experimenting for deleterows */
+/* flair */
 .book-info-table tr:hover {
   background-color: #04AA6D;
-}
-
-
-/* obsolete */
-.selected {
-  background-color: pink;
 }
 
 /* styles for the cells*/
@@ -98,7 +92,7 @@ th {
   font-size: 1.5em;
 }
 
-/* Button used to open the contact form - fixed at the bottom of the page */
+/* Button used to open book adding form */
 .open-button {
   background-color: #555;
   color: white;
@@ -134,7 +128,7 @@ th {
 }
 
 /* Full-width input fields */
-.form-container input[type=text] {
+.form-container input[type=text]{
   width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -142,8 +136,18 @@ th {
   background: #f1f1f1;
 }
 
+#readStatus {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  justify-content: center;
+}
+
 /* When the inputs get focus, do something */
-.form-container input[type=text]:focus {
+.form-container input[type=text]:focus,
+.form-container input[type=radio] {
   background-color: #ddd;
   outline: none;
 }
