@@ -17,6 +17,18 @@ const Library = {
     }
 }
 
+// book object class, libraries need many books, right?
+// as a constructor, it could come anywhere, as a class
+// it needs to come before being called (line 35)
+class Book {
+  constructor(title, pages, author, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
+};
+
 // populating the inventory with some dummy books 
 // input on pages is out of intuitive order due to development of system
 // needs to be optomized later (Title, Author, Pages, Status)
@@ -29,13 +41,7 @@ addBookToTable();
 addBookToLibrary('Interview with the Vampire', 371, 'Rice, Anne', 'read');
 addBookToTable();
 
-// book object constructor, libraries need many books, right?
-function Book(title, pages, author, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus
-};
+
 
 // books gotta be in the library, right?
 function addBookToLibrary(title, pages, author, status) {
