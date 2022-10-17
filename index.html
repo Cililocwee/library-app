@@ -17,30 +17,31 @@
 
         <div class="form-popup" id="myForm">
             <div class="form-container">
-                <h1>New Book</h1>
+                <form id="new-book-entry">
+                    <h1>New Book</h1>
 
-                <label for="form-title"><b>Title</b></label>
-                <input type="text" placeholder="Enter title here..." name="form-title" id="form-title" required>
+                    <label for="form-title"><b>Title</b></label>
+                    <input required type="text" placeholder="Enter title here..." name="form-title" id="form-title">
 
-                <label for="author"><b>Author</b></label>
-                <input type="text" placeholder="Last name, First name..." name="author" id="author">
+                    <label for="author"><b>Author</b></label>
+                    <input type="text" placeholder="Last name, First name..." name="author" id="author">
 
-                <label for="pages"><b>Pages</b></label>
-                <input type="text" placeholder="Enter total page count..." name="pages" id="pages">
+                    <label for="pages"><b>Pages</b></label>
+                    <input type="text" placeholder="Enter total page count..." name="pages" id="pages">
 
-                <label for="readStatus"><b>Status</b></label>
-                <form name="readStatus" id="readStatus">
-                    <label class="radio-inline">
-                      <input type="radio" name="optradio" value="unread">unread
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="optradio" value="in progress">in progress
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="optradio" value="read">read
-                    </label>
-                  </form>
-
+                    <label for="readStatus"><b>Status</b></label>
+                    <form name="readStatus" id="readStatus">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" value="unread">unread
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" value="in progress">in progress
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" value="read" selected>read
+                        </label>
+                    </form>
+                </form>
                 <button class="btn addtolibrary" id="add-button">Add</button>
                 <button type="button" class="btn cancel" id="close-button">Close</button>
             </div>
@@ -62,11 +63,11 @@
                 </table>
 
             </div>
-            <p>Photo by <a
+            <!-- <p>Photo by <a
                     href="https://unsplash.com/@gabons?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Gabriel
                     Sollmann</a> on <a
                     href="https://unsplash.com/s/photos/library?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-            </p>
+            </p> -->
         </div>
     </div>
 

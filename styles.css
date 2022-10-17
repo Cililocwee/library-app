@@ -1,11 +1,35 @@
+:root {
+  --primary: #9c27b0;
+  --primary-light: #d05ce3;
+  --primary-dark: #6a0080;
+  --secondary: #1e88e5;
+  --secondary-light: #6ab7ff;
+  --secondary-dark: #005cb2;
+  --font-on-primary-and-dark: #ffffff;
+  --font-on-secondary-and-light: #000000;
+  --background: #ffffff;
+  --divider: #808080;
+}
+
 body {
-  width: 100%;
+  width: auto;
   height: 100%;
-  background-image: url("library.jpg");
+  /* background-image: url("library.jpg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: auto;
 }
+@media all and (max-width: 768px){
+  body {
+    background-size: 700%;
+  }
+}
+
+#new-book-entry {
+  margin-bottom: 20px;
+}
+
 
 .content {
   width: auto;
@@ -13,28 +37,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
   grid-template-rows: 200px 3fr;
-
+  margin: -10px;
   padding-top: 50px;
-}
-
-.user-input-field {
-  width: auto;
-  height: 100%;
-  background: red;
-  grid-area: 1/2/2/3;
-  justify-self: center;
-  align-items: center;
-  display: flex;
-}
-
-.user-input-field input {
-  display: flex;
-  justify-content: space-between;
-}
-
-.user-input-field button {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .library-display {
@@ -48,19 +52,23 @@ body {
 .library-display p {
   margin: auto;
   margin-bottom: 0;
-  background-color: gray;
+  background-color: rgba(128, 128, 128, .5);
   font-size: .75em;
+  padding: 5px 20px;
+  border-radius: 5px;
 }
 
 .book-info {
   grid-row: 1;
-  height: 650px;
+  height: fit-content;
   width: 650px;
   justify-self: center;
-  background-color: lightgray;
+  background-color: var(--secondary-light);
   display: flex;
   justify-content: center;
   overflow: auto;
+  border-radius: 16px;
+  padding-bottom: 15px;
 }
 
 .book-info-table {
@@ -70,11 +78,12 @@ body {
   text-align: center;
   width: 600px;
   margin-top: 20px;
+  background-color: var(--background);
 }
 
 /* flair */
 .book-info-table tr:hover {
-  background-color: #04AA6D;
+  background-color: var(--secondary);
 }
 
 /* styles for the cells*/
@@ -86,16 +95,18 @@ td {
 }
 
 th {
-  background-color: gray;
+  background-color: var(--primary-dark);
   height: 2em;
   font-weight: bolder;
   font-size: 1.5em;
+  color: var(--font-on-primary-and-dark);
 }
 
 /* Button used to open book adding form */
 .open-button {
-  background-color: #555;
-  color: white;
+  background-color: var(--primary-dark);
+  color: var(--font-on-primary-and-dark);
+  font-weight: bold;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
@@ -104,7 +115,8 @@ th {
   top: 23px;
   left: 50%;
   transform: translate(-50%, 0%);
-  width: 280px;
+  width: 200px;
+  border-radius: 6px;
 }
 
 /* The popup form - hidden by default */
@@ -114,21 +126,20 @@ th {
   top: 15px;
   left: 50%;
   transform: translate(-50%, 0%);
-  border: 3px solid #f1f1f1;
   z-index: 9;
-  border-radius: 15px;
 }
 
 /* Add styles to the form container */
 .form-container {
   max-width: 300px;
-  padding: 10px;
-  background-color: white;
+  padding: 10px 20px;
+  background-color: var(--secondary-light);
   border-radius: 15px;
+  border: 3px solid var(--background);
 }
 
 /* Full-width input fields */
-.form-container input[type=text]{
+.form-container input[type=text] {
   width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -154,7 +165,7 @@ th {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04AA6D;
+  background-color: var(--secondary-dark);
   color: white;
   padding: 16px 20px;
   border: none;
@@ -166,7 +177,7 @@ th {
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+  background-color: var(--primary);
 }
 
 /* Add some hover effects to buttons */

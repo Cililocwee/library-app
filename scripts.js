@@ -110,27 +110,29 @@ function addBookToTable() {
   })
 };
 
-// waits to hear a click on the ADD button
-button.addEventListener('click', (event) => {
-  if (title.value === '') {
-    console.log("Error: Must have a title");
-    closeForm();
-    return;
-  }
-  addBookToLibrary(title.value, pages.value, author.value, displayRadioValue());
-  addBookToTable();
-  // clear the fields
+// simulate add
+function addData() {
+ if(title.value === '') {
+  closeForm();
+  return;
+ }
+ addBookToLibrary(title.value, pages.value, author.value, displayRadioValue());
+ addBookToTable();
+ clearAllFields();
+ closeForm();
+}
+
+// clear fields
+function clearAllFields() {
   title.value = '';
   author.value = '';
   pages.value = '';
-  readStatus.value = '';
+}
 
-  // tracking the Library inventory while debugging
-  for (let i = 0; i < Library.inventory.length; i++) {
-    console.log(Library.inventory[i]);
-  }
-
-  closeForm();
+// waits to hear a click on the ADD button
+button.addEventListener('click', (event) => {
+  addData();
+  clearAllFields();
 })
 
 // Adds ENTER functionality in form
@@ -139,14 +141,14 @@ const input = document.querySelectorAll('input');
 input.forEach(item => {
   item.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-      document.querySelector('#add-button').click();
+      addData();
     }
   })
-  // Escape is never caught on keypress, only keyup or keydown
-  // Only works on SECOND press, frustrating
+
+// closes form on escape
   item.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      document.querySelector('#close-button').click();
+      closeForm();
     }
   })
 });
@@ -166,7 +168,6 @@ function openForm() {
 
 function closeForm() {
   popupForm.style.display = "none";
-  //makeSelectable(); //toggles selectable when run
 }
 
 // sort by title
@@ -243,3 +244,19 @@ function displayRadioValue() {
   var checkedRadio = Array.from(radioButtonGroup).find((radio) => radio.checked);
   return checkedRadio.value;
 }
+
+
+// form validation
+
+const titleInput = document.getElementById('form-title');
+const authorInput = document.getElementById('author');
+const pagesInput = document.getElementById('pages');
+
+const newBookForm = document.getElementById('new-book-entry');
+
+newBookForm.addEventListener('submit', (event)=>{
+  if (titleInput.value.length < 5) {
+    event.preventDefault();
+  }
+})
+
